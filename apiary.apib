@@ -111,9 +111,10 @@ GET /me/followings
 < 201
 <<<EOT
 {
-    "page": 1,
-    "next": "/me/followings/?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
+
+    "nextURL": "/me/followings/?page_index=2",
+    "previousURL": null,
 
     "items": [
         {
@@ -140,11 +141,12 @@ GET /me/followers
 < 201
 <<<EOT
 {
-    "page": 1,
-    "next": "/me/followers/?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/me/followers/?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -187,10 +189,11 @@ GET /users
 <<<EOT
 {
     "page" : 1,
-    "next" : "/users/?page_index=2",
-    "previous": null,
 
-    "items": [
+    "nextURL" : "/users/?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -384,11 +387,12 @@ GET /users/{uid}/followings
 < 201
 <<<EOT
 {
-    "page": 1,
-    "next": "/users/1/followings/?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/users/1/followings/?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -414,11 +418,12 @@ GET /users/{uid}/followers
 < 201
 <<<EOT
 {
-    "page": 1,
-    "next": "/users/1/followers/?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/users/1/followers/?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "id": 1,
 
@@ -484,11 +489,12 @@ GET /models
 < 200
 <<<EOT
 {
-    "page": 1,
-    "next": "/models?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/models?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -736,11 +742,12 @@ GET /comments{?model_uid}
 < 200
 <<<EOT
 {
-    "page": 1,
-    "next": "/models?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/models?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -803,11 +810,12 @@ GET /backgrounds
 < 200
 <<<EOT
 {
-    "page": 1,
-    "next": "/backgrounds?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/backgrounds?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -862,11 +870,12 @@ GET /folders
 < 200
 <<<EOT
 {
-    "page": 1,
-    "next": "/folders?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/folders?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -981,11 +990,12 @@ GET /categories
 < 200
 <<<EOT
 {
-    "page": 1,
-    "next": "/categories?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/categories?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
@@ -1013,11 +1023,12 @@ GET /textures{?model_uid}
 < 200
 <<<EOT
 {
-    "page": 1,
-    "next": "/textures?page_index=2",
-    "previous": null,
+    "pageIndex": 1,
 
-    "items": [
+    "nextURL": "/textures?page_index=2",
+    "previousURL": null,
+
+    "results": [
         {
             "uid": "0123456789ABCDEFG",
 
