@@ -52,8 +52,8 @@ GET /me
     ],
 
     "skills": [
-        "blender",
-        "maya"
+        { "uid": "0123456789ABCDEFG", "name": "blender" },
+        { "uid": "0123456789ABCDEFG", "name": "maya" }
     ],
 
     "badges": [
@@ -228,8 +228,8 @@ GET /users
             ],
 
             "skills": [
-                "blender",
-                "maya"
+                { "uid": "0123456789ABCEFG", "name": "blender" },
+                { "uid": "0123456789ABCEFG", "name": "maya" }
             ],
 
             "badges": [
@@ -326,8 +326,8 @@ GET /users/{uid}
     ],
 
     "skills": [
-        "blender",
-        "maya"
+        { "uid": "0123456789ABCDEFG", "name": "blender" },
+        { "uid": "0123456789ABCDEFG", "name": "maya" }
     ],
 
     "badges": [
@@ -440,13 +440,13 @@ EOT
 
 Make auth user follow the user referenced by `uid`
 POST /users/{uid}/followers
-< 201
+< 200
 {
 }
 
 If the auth user was following the user referenced by `uid`, it does not anymore
 DELETE /users/{uid}/followers
-< 201
+< 200
 {
 }
 
@@ -524,8 +524,8 @@ GET /models
             },
 
             "categories": [
-                "character",
-                "man"
+                { "uid": "0123456789ABCDEFG", "name": "character" },
+                { "uid": "0123456789ABCDEFG", "name": "man" }
             ],
 
             "tags": [
@@ -553,20 +553,19 @@ GET /models
 
             "files": [
                 {
-                  "faceCount": 200,
-                  "nbVertexes": 1000,
+                  "vertexCount": 1000,
                   "url": "https://cdn.sketchfab.com/models/1/wireframe.osgjs.gz",
                   "type": "wireframe"
                 },
                 {
                   "faceCount": 200,
-                  "nbVertexes": 2000,
+                  "vertexCount": 2000,
                   "url": "https://cdn.sketchfab.com/models/1/file.osgjs.gz"
                   "type": "polygon"
                 },
                 {
                   "faceCount": 20000,
-                  "nbVertexes": 2000000,
+                  "vertexCount": 2000000,
                   "url": "https://cdn.sketchfab.com/models/1/file2.osgjs.gz"
                   "type": "polygon"
                 }
@@ -578,12 +577,6 @@ GET /models
 EOT
 
 Get informations about a specific model
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 GET /models/{uid}
 < 200
 <<<EOT
@@ -629,8 +622,8 @@ GET /models/{uid}
     },
 
     "categories": [
-        "character",
-        "man"
+        { "uid": "0123456789ABCDEFG", "name": "character" },
+        { "uid": "0123456789ABCDEFG", "name": "man" }
     ],
 
     "tags": [
@@ -657,24 +650,38 @@ GET /models/{uid}
     ],
 
     "files": [
-        { "faceCount": 200, "url": "https://cdn.sketchfab.com/models/1/200.png" },
-        { "faceCount": 300, "url": "https://cdn.sketchfab.com/models/1/300.png" }
+        {
+            "vertexCount": 1000,
+            "url": "https://cdn.sketchfab.com/models/1/wireframe.osgjs.gz",
+            "type": "wireframe"
+        },
+        {
+            "faceCount": 200,
+            "vertexCount": 2000,
+            "url": "https://cdn.sketchfab.com/models/1/file.osgjs.gz"
+            "type": "polygon"
+        },
+        {
+            "faceCount": 20000,
+            "vertexCount": 2000000,
+            "url": "https://cdn.sketchfab.com/models/1/file2.osgjs.gz"
+            "type": "polygon"
+        }
     ]
-}
 EOT
 
 Send a model to the processing queue
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
+    <tr><th>Required POST parameters</th><th></th></tr>
     <tr><td>name</td><td></td></tr>
     <tr><td>binary_content</td><td></td></tr>
 </table>
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Optional parameters</th><th></th></tr>
+    <tr><th>Optional POST parameters</th><th></th></tr>
     <tr><td>description</td><td></td></tr>
 </table>
 POST /models
@@ -688,12 +695,6 @@ EOT
 Set an existing background to a model if the following conditions are met :
 
 - The background is either public or owned by the current user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 POST /models/{uid}/background
 < 200
 {
@@ -701,26 +702,14 @@ POST /models/{uid}/background
 }
 
 
-Add the model referenced by `id` to the favorite list of the current user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
+Add the model referenced by `uid` to the favorite list of the current user
 POST /models/{uid}/likes
-< 201
+< 200
 {
 }
 
 
 Remove the model referenced by `id` from the favorite list of the current user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 DELETE /models/{uid}/likes
 < 200
 {
@@ -728,12 +717,6 @@ DELETE /models/{uid}/likes
 
 
 Delete a model if its owner is the auth user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 DELETE /models/{uid}
 < 200
 {
@@ -742,14 +725,14 @@ DELETE /models/{uid}
 
 -- Comment Resources --
 
-Get the comment list for the model referenced by `model_id`
+Get the comment list for the model referenced by `model_uid`
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>model_id</td><td></td></tr>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>model_uid</td><td></td></tr>
 </table>
-GET /comments{?model_id}
+GET /comments{?model_uid}
 < 200
 <<<EOT
 {
@@ -785,12 +768,12 @@ GET /comments{?model_id}
 }
 EOT
 
-Add a new comment to the model referenced by `model_id`
+Add a new comment to the model referenced by `model_uid`
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>model_id</td><td></td></tr>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>model_uid</td><td></td></tr>
     <tr><td>comment</td><td></td></tr>
 </table>
 POST /comments
@@ -800,17 +783,11 @@ POST /comments
 }
 EOT
 
-The comment referenced by `id` is removed from the comments if the following conditions are met :
+The comment referenced by `uid` is removed from the comments if the following conditions are met :
 
 - The comment author is the auth user
 - The comment is the last one posted
 - The comment was submitted less than one hour ago
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 DELETE /comments/{uid}
 < 200
 <<<EOT
@@ -819,11 +796,9 @@ DELETE /comments/{uid}
 EOT
 
 
-
 -- Background Resources --
 
 Get the background list
-
 GET /backgrounds
 < 200
 <<<EOT
@@ -836,7 +811,7 @@ GET /backgrounds
         {
             "uid": "0123456789ABCDEFG",
 
-            "image": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+            "imageURL": "https://cdn.sketchfab.com/avatars/1/16x16.png",
 
             "createdAt" : "2013-09-17 23:42 UTC+0000",
         }
@@ -850,13 +825,14 @@ Add a new background if the following conditions are met :
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>image</td><td></td></tr>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>image_file</td><td></td></tr>
 </table>
 POST /backgrounds
 < 201
 <<<EOT
 {
+    "uid": "0123456789ABCDEFG"
 }
 EOT
 
@@ -864,12 +840,6 @@ The background referenced by `id` is removed from the backgrounds if the followi
 
 - The background owner is the current user
 - The owner has a pro account
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 DELETE /backgrounds/{uid}
 < 200
 <<<EOT
@@ -881,12 +851,12 @@ EOT
 
 -- Folders Resources --
 
-Get the public folders list for the user referenced by 'user_id'
+Get the public folders list for the user referenced by `user_uid`
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>user_id</td><td></td></tr>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>user_uid</td><td></td></tr>
 </table>
 GET /folders
 < 200
@@ -908,9 +878,19 @@ GET /folders
             "updatedAt" : "2013-09-17 23:42 UTC+0000",
 
             "items" : [
-                "123hkjh2k3jh1",
-                "3382732bjdhsa",
-                "kauhkashiu321"
+                {
+                    "uid": "0123456789ABCDEFG",
+
+                    "name": "Yet Another Model",
+                    "description": "Done in one night by a guy with a bit too much free time",
+
+                    "viewerURL": "https://sketchfab.com/model/0123456789ABCDEFG",
+
+                    "previews": {
+                        "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+                        "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+                    }
+                }
             ]
 
         }
@@ -924,26 +904,21 @@ Add a new folder if the following conditions are met :
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
+    <tr><th>Required POST parameters</th><th></th></tr>
     <tr><td>name</td><td></td></tr>
-    <tr><td>desc</td><td></td></tr>
-    <tr><td>items</td><td></td></tr>
+</table>
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Optional POST parameters</th><th></th></tr>
+    <tr><td>description</td><td></td></tr>
+    <tr><td>items[]</td><td></td></tr>
 </table>
 POST /folders
-<<<EOT
-{
-    "name": "Cool Stuff",
-    "desc" : "Contains really cool stuff",
-
-    "items" : [
-        "123hkjh2k3jh1",
-        "3382732bjdhsa",
-        "kauhkashiu321"
-    ]
-}
-EOT
 < 201
-
+{
+    "uid": "0123456789ABCDEFG"
+}
 
 Update a folder if the following conditions are met :
 
@@ -953,37 +928,44 @@ Update a folder if the following conditions are met :
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
+    <tr><th>Required POST parameters</th><th></th></tr>
     <tr><td>uid</td><td></td></tr>
     <tr><td>name</td><td></td></tr>
-    <tr><td>desc</td><td></td></tr>
-    <tr><td>items</td><td></td></tr>
+    <tr><td>description</td><td></td></tr>
+    <tr><td>items[]</td><td></td></tr>
 </table>
 PUT /folders/{uid}
+< 200
 <<<EOT
 {
+    "uid": "0123456789ABCDEFG",
+
     "name": "Cool Stuff",
-    "desc" : "Contains really cool stuff",
+    "description" : "Contains really cool stuff",
 
     "items" : [
-        "123hkjh2k3jh1",
-        "3382732bjdhsa",
-        "kauhkashiu321"
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "name": "Yet Another Model",
+            "description": "Done in one night by a guy with a bit too much free time",
+
+            "viewerURL": "https://sketchfab.com/model/0123456789ABCDEFG",
+
+            "previews": {
+                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+            }
+        }
     ]
 }
 EOT
 < 200
 
 
-The folder referenced by `id` is removed from the folders if the following conditions are met :
+The folder referenced by `uid` is removed if the following conditions are met :
 
 - The folder owner is the current user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 DELETE /folders/{uid}
 < 200
 <<<EOT
@@ -995,10 +977,6 @@ EOT
 -- Categories Resources --
 
 Get the categories
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-</table>
 GET /categories
 < 200
 <<<EOT
@@ -1012,7 +990,7 @@ GET /categories
             "uid": "0123456789ABCDEFG",
 
             "name": "Science",
-            "desc": "Science related models",
+            "description": "Science related models",
 
             "parent" : 2
         }
@@ -1024,14 +1002,14 @@ EOT
 
 -- Texture Resources --
 
-Get the texture list for the model referenced by 'model_id'
+Get the texture list for the model referenced by 'model_uid'
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>model_id</td><td></td></tr>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>model_uid</td><td></td></tr>
 </table>
-GET /textures{?model_id}
+GET /textures{?model_uid}
 < 200
 <<<EOT
 {
@@ -1047,7 +1025,7 @@ GET /textures{?model_id}
                 "uid" : "0123456789ABCDEFG"
             },
 
-            "image" : "https://cdn.sketchfab.com/data/1/texture.png",
+            "imageURL" : "https://cdn.sketchfab.com/data/1/texture.png",
 
             "createdAt" : "2013-09-17 23:42 UTC+0000"
         }
@@ -1064,8 +1042,7 @@ Add a new texture and link it to a model if the following conditions are met :
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required parameters</th><th></th></tr>
     <tr><td>model_uid</td><td></td></tr>
-    <tr><td>image_name</td><td></td></tr>
-    <tr><td>image_binary</td><td></td></tr>
+    <tr><td>image_file</td><td></td></tr>
 </table>
 POST /textures
 < 201
@@ -1077,12 +1054,6 @@ EOT
 The texture referenced by `id` is removed from the textures if the following conditions are met :
 
 - The texture owner is the current user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required parameters</th><th></th></tr>
-    <tr><td>uid</td><td></td></tr>
-</table>
 DELETE /textures/{uid}
 < 200
 <<<EOT
