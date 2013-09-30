@@ -1,35 +1,1091 @@
-HOST: http://www.google.com/
+HOST: http://api.sketchfab.com/v2/
 
---- Sample API v2 ---
+--- Sketchfab API v2 ---
+
 ---
-Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
 ---
 
 --
-Shopping Cart Resources
-The following is a section of resources related to the shopping cart
+Current User Resources
 --
-List products added into your shopping-cart. (comment block again in Markdown)
-GET /shopping-cart
+
+Fetch information about current user
+
+**Note :** This endpoint does not return more than 4 models, 16 followings and 16 followers
+GET /me
 < 200
-< Content-Type: application/json
-{ "items": [
-{ "url": "/shopping-cart/1", "product":"2ZY48XPZ", "quantity": 1, "name": "New socks", "price": 1.25 }
-] }
+<<<EOT
+{
+    "uid": "0123456789ABCDEFG",
 
+    "username": "test",
+    "displayName": "Foo Bar",
+    "location": "Paris",
+    "status": "pro",
 
-Save new products in your shopping cart
-POST /shopping-cart
-> Content-Type: application/json
-{ "product":"1AB23ORM", "quantity": 2 }
+    "modelCount": 0,
+    "favoriteCount": 0,
+    "folderCount": 0,
+    "badgeCount": 0,
+    "followerCount": 0,
+    "followingCount": 0,
+
+    "profileURL": "https://sketchfab.com/user/test",
+    "modelsURL": "https://sketchfab.com/user/test/models",
+    "foldersURL": "https://sketchfab.com/user/test/folders",
+    "likesURL": "https://sketchfab.com/user/test/favorites",
+
+    "models": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "name": "Yet Another Model",
+            "description": "Done in one night by a guy with a bit too much free time",
+
+            "viewerURL": "https://sketchfab.com/model/0123456789ABCDEFG",
+
+            "previews": {
+                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+            }
+        }
+    ],
+
+    "skills": [
+        "blender",
+        "maya"
+    ],
+
+    "badges": [
+        { "uid": "0123456789ABCDEFG", "name": "Beta Tester", "description": "This user is a Sketchfab friend !" },
+        { "uid": "0123456789ABCDEFG", "name": "Beer Master", "description": "Well, this guy knows the subject quite a bit" }
+    ],
+
+    "avatars": {
+        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+    },
+
+    "followers": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ],
+
+    "followings": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ]
+}
+EOT
+
+Get the following list of the auth user
+
+GET /me/followings
 < 201
-< Content-Type: application/json
-{ "status": "created", "url": "/shopping-cart/2" }
+<<<EOT
+{
+    "page": 1,
+    "next": "/me/followings/?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ]
+]
+EOT
+
+Get the follower list of the auth user
+GET /me/followers
+< 201
+<<<EOT
+{
+    "page": 1,
+    "next": "/me/followers/?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ]
+]
+EOT
 
 
--- Payment Resources --
-This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
+--
+User Resources
+--
+
+Query Sketchfab user list
+
+**Note :** This endpoint does not return more than 16 followings and 16 followers
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Optional GET parameters</th><th></th></tr>
+    <tr><td>page_index</td><td></td></tr>
+    <tr><td>sort_by</td><td></td></tr>
+    <tr><td>filter_by</td><td><b>incoming</b></td></tr>
+    <tr><td>username_filter</td><td>temporary</td></tr>
+    <tr><td>status_filter</td><td>temporary</td></tr>
+</table>
+GET /users
 < 200
-{ "receipt": "/payment/receipt/1" }
+<<<EOT
+{
+    "page" : 1,
+    "next" : "/users/?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "location": "Paris",
+            "status": "pro",
+
+            "modelCount": 0,
+            "favoriteCount": 0,
+            "folderCount": 0,
+            "badgeCount": 0,
+            "followerCount": 0,
+            "followingCount": 0,
+
+            "profileURL": "https://sketchfab.com/user/test",
+            "modelsURL": "https://sketchfab.com/user/test/models",
+            "foldersURL": "https://sketchfab.com/user/test/folders",
+            "likesURL": "https://sketchfab.com/user/test/favorites",
+
+            "models": [
+                {
+                    "uid": "0123456789ABCDEFG",
+
+                    "name": "Yet Another Model",
+                    "description": "Done in one night by a guy with a bit too much free time",
+
+                    "viewerURL": "https://sketchfab.com/model/0123456789ABCDEFG",
+
+                    "previews": {
+                        "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+                        "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+                    }
+                }
+            ],
+
+            "skills": [
+                "blender",
+                "maya"
+            ],
+
+            "badges": [
+                { "uid": "0123456789ABCDEFG", "name": "Beta Tester", "description": "This user is a Sketchfab friend !" },
+                { "uid": "0123456789ABCDEFG", "name": "Beer Master", "description": "Well, this guy knows the subject quite a bit" }
+            ],
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            },
+
+            "followers": [
+                {
+                    "uid": "0123456789ABCDEFG",
+
+                    "username": "test",
+                    "displayName": "Foo Bar",
+                    "status": "pro",
+
+                    "profileURL": "https://sketchfab.com/user/test"
+
+                    "avatars": {
+                        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+                    }
+                }
+            ],
+
+            "followings": [
+                {
+                    "uid": "0123456789ABCDEFG",
+
+                    "username": "test",
+                    "displayName": "Foo Bar",
+                    "status": "pro",
+
+                    "profileURL": "https://sketchfab.com/user/test"
+
+                    "avatars": {
+                        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+                    }
+                }
+            ]
+        }
+    ]
+}
+EOT
+
+Get informations about the user referenced by `uid`
+
+**Note :** This endpoint does not return more than 16 followings and 16 followers
+GET /users/{uid}
+< 200
+<<<EOT
+{
+    "uid": "0123456789ABCDEFG",
+
+    "username": "test",
+    "displayName": "Foo Bar",
+    "location": "Paris",
+    "status": "pro",
+
+    "modelCount": 0,
+    "favoriteCount": 0,
+    "folderCount": 0,
+    "badgeCount": 0,
+    "followerCount": 0,
+    "followingCount": 0,
+
+    "profileURL": "https://sketchfab.com/user/test",
+    "modelsURL": "https://sketchfab.com/user/test/models",
+    "foldersURL": "https://sketchfab.com/user/test/folders",
+    "likesURL": "https://sketchfab.com/user/test/favorites",
+
+    "models": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "name": "Yet Another Model",
+            "description": "Done in one night by a guy with a bit too much free time",
+
+            "viewerURL": "https://sketchfab.com/model/0123456789ABCDEFG",
+
+            "previews": {
+                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+            }
+        }
+    ],
+
+    "skills": [
+        "blender",
+        "maya"
+    ],
+
+    "badges": [
+        { "uid": "0123456789ABCDEFG", "name": "Beta Tester", "description": "This user is a Sketchfab friend !" },
+        { "uid": "0123456789ABCDEFG", "name": "Beer Master", "description": "Well, this guy knows the subject quite a bit" }
+    ],
+
+    "avatars": {
+        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+    },
+
+    "followers": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ],
+
+    "followings": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ]
+}
+EOT
+
+Get the following list of the user referenced by `uid`
+GET /users/{uid}/followings
+< 201
+<<<EOT
+{
+    "page": 1,
+    "next": "/users/1/followings/?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ]
+]
+EOT
+
+Get the follower list of the user referenced by `uid`
+
+GET /users/{uid}/followers
+< 201
+<<<EOT
+{
+    "page": 1,
+    "next": "/users/1/followers/?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "id": 1,
+
+            "username": "test",
+            "displayName": "Foo Bar",
+            "status": "pro",
+
+            "profileURL": "https://sketchfab.com/user/test",
+
+            "avatars": {
+                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+            }
+        }
+    ]
+]
+EOT
+
+Make auth user follow the user referenced by `uid`
+POST /users/{uid}/followers
+< 201
+{
+}
+
+If the auth user was following the user referenced by `uid`, it does not anymore
+DELETE /users/{uid}/followers
+< 201
+{
+}
+
+Register a new user into Sketchfab
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <tr><th>Required POST parameters</th></tr>
+    <tr><td>email</td><td></td></tr>
+    <tr><td>username</td><td></td></tr>
+    <tr><td>display_name</td><td></td></tr>
+    <tr><td>password</td><td></td></tr>
+</table>
+POST /users
+< 201
+<<<EOT
+{
+    "uid": "0123456789ABCDEFG"
+}
+EOT
+
+-- Model Resources --
+
+Query Sketchfab model list
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Optional GET parameters</th><th></th></tr>
+    <tr><td>page_index</td><td></td></tr>
+    <tr><td>sort_by</td><td></td></tr>
+    <tr><td>filter_by</td><td><b>Not yet implemented</b></td></tr>
+    <tr><td>categories</td><td>filler, will be replaced by `filter_by` later</td></tr>
+    <tr><td>tags</td><td>filler, will be replaced by `filter_by` later</td></tr>
+</table>
+GET /models
+< 200
+<<<EOT
+{
+    "page": 1,
+    "next": "/models?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "name": "Yet Another Model",
+            "description": "Done in one night by a guy with a bit too much free time",
+            "progression": "done",
+
+            "isStaffpicked": true,
+            "isPublished": true,
+
+            "viewCount": 100,
+            "likeCount": 200,
+            "vertexCount": 300,
+            "faceCount": 400,
+            "commentCount" : 42,
+
+            "viewerUrl": "https://sketchfab.com/view/0",
+            "embedUrl": "https://sketchfab.com/embed/1",
+
+            "license": {
+                "uid": "0123456789ABCDEFG",
+                "name": "Pizzaware",
+                "description": "You are free to use this 3D model as you wish if you pay me a pizza. Period.",
+                "isDownloadable": false
+            },
+
+            "author": {
+                "uid": "0123456789ABCDEFG",
+                "username": "test",
+                "displayName": "Foo Bar",
+                "status": "pro",
+                "profileURL": "https://sketchfab.com/user/test"
+            },
+
+            "categories": [
+                "character",
+                "man"
+            ],
+
+            "tags": [
+                "probably",
+                "just",
+                "some",
+                "test"
+            ],
+
+            "previews": {
+                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+            },
+
+            "fallback": [
+                "https://cdn.sketchfab.com/fallbacks/1/000deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/045deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/090deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/135deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/180deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/225deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/270deg.png",
+                "https://cdn.sketchfab.com/fallbacks/1/315deg.png"
+            ],
+
+            "files": [
+                {
+                  "faceCount": 200,
+                  "nbVertexes": 1000,
+                  "url": "https://cdn.sketchfab.com/models/1/wireframe.osgjs.gz",
+                  "type": "wireframe"
+                },
+                {
+                  "faceCount": 200,
+                  "nbVertexes": 2000,
+                  "url": "https://cdn.sketchfab.com/models/1/file.osgjs.gz"
+                  "type": "polygon"
+                },
+                {
+                  "faceCount": 20000,
+                  "nbVertexes": 2000000,
+                  "url": "https://cdn.sketchfab.com/models/1/file2.osgjs.gz"
+                  "type": "polygon"
+                }
+
+            ]
+        }
+    ]
+}
+EOT
+
+Get informations about a specific model
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+GET /models/{uid}
+< 200
+<<<EOT
+{
+    "uid": "0123456789ABCDEFG",
+
+    "name": "Yet Another Model",
+    "description": "Done in one night by a guy with a bit too much free time",
+    "progression": "done",
+
+    "isStaffpicked": true,
+    "isPublished": true,
+
+    "viewCount": 100,
+    "likeCount": 200,
+    "vertexCount": 300,
+    "faceCount": 400,
+
+    "viewerUrl": "https://sketchfab.com/view/0",
+    "embedUrl": "https://sketchfab.com/embed/1",
+
+    "license": {
+        "uid": "0123456789ABCDEFG",
+        "name": "Pizzaware",
+        "description": "You are free to use this 3D model as you wish if you pay me a pizza. Period.",
+        "isDownloadable": false
+    },
+
+    "author": {
+        "uid": "0123456789ABCDEFG",
+
+        "username": "test",
+        "displayName": "Foo Bar",
+        "status": "pro",
+
+        "profileURL": "https://sketchfab.com/user/test",
+
+        "avatars": {
+            "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+            "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+            "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+        }
+    },
+
+    "categories": [
+        "character",
+        "man"
+    ],
+
+    "tags": [
+        "probably",
+        "just",
+        "some",
+        "test"
+    ],
+
+    "previews": {
+        "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
+        "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
+    },
+
+    "fallback": [
+        "https://cdn.sketchfab.com/fallbacks/1/000deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/045deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/090deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/135deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/180deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/225deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/270deg.png",
+        "https://cdn.sketchfab.com/fallbacks/1/315deg.png"
+    ],
+
+    "files": [
+        { "faceCount": 200, "url": "https://cdn.sketchfab.com/models/1/200.png" },
+        { "faceCount": 300, "url": "https://cdn.sketchfab.com/models/1/300.png" }
+    ]
+}
+EOT
+
+Send a model to the processing queue
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>name</td><td></td></tr>
+    <tr><td>binary_content</td><td></td></tr>
+</table>
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Optional parameters</th><th></th></tr>
+    <tr><td>description</td><td></td></tr>
+</table>
+POST /models
+< 200
+<<<EOT
+{
+    "uid": "0123456789ABCDEFG"
+}
+EOT
+
+Set an existing background to a model if the following conditions are met :
+
+- The background is either public or owned by the current user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+POST /models/{uid}/background
+< 200
+{
+    "background_uid": "0123456789ABCDEFG"
+}
+
+
+Add the model referenced by `id` to the favorite list of the current user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+POST /models/{uid}/likes
+< 201
+{
+}
+
+
+Remove the model referenced by `id` from the favorite list of the current user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+DELETE /models/{uid}/likes
+< 200
+{
+}
+
+
+Delete a model if its owner is the auth user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+DELETE /models/{uid}
+< 200
+{
+}
+
+
+-- Comment Resources --
+
+Get the comment list for the model referenced by `model_id`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>model_id</td><td></td></tr>
+</table>
+GET /comments{?model_id}
+< 200
+<<<EOT
+{
+    "page": 1,
+    "next": "/models?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "author": {
+                "uid": "0123456789ABCDEFG",
+
+                "username": "test",
+                "displayName": "Foo Bar",
+                "status": "pro",
+
+                "profileURL": "https://sketchfab.com/user/test",
+
+                "avatars": {
+                    "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+                    "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
+                    "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
+                }
+            },
+
+            "submissionDate": "2013-09-17 23:42 UTC+0000",
+
+            "text": "This model is *awesome*"
+        }
+    ]
+}
+EOT
+
+Add a new comment to the model referenced by `model_id`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>model_id</td><td></td></tr>
+    <tr><td>comment</td><td></td></tr>
+</table>
+POST /comments
+< 201
+<<<EOT
+{
+}
+EOT
+
+The comment referenced by `id` is removed from the comments if the following conditions are met :
+
+- The comment author is the auth user
+- The comment is the last one posted
+- The comment was submitted less than one hour ago
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+DELETE /comments/{uid}
+< 200
+<<<EOT
+{
+}
+EOT
+
+
+
+-- Background Resources --
+
+Get the background list
+
+GET /backgrounds
+< 200
+<<<EOT
+{
+    "page": 1,
+    "next": "/backgrounds?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "image": "https://cdn.sketchfab.com/avatars/1/16x16.png",
+
+            "createdAt" : "2013-09-17 23:42 UTC+0000",
+        }
+    ]
+}
+EOT
+
+Add a new background if the following conditions are met :
+
+- The owner has a pro account
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>image</td><td></td></tr>
+</table>
+POST /backgrounds
+< 201
+<<<EOT
+{
+}
+EOT
+
+The background referenced by `id` is removed from the backgrounds if the following conditions are met :
+
+- The background owner is the current user
+- The owner has a pro account
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+DELETE /backgrounds/{uid}
+< 200
+<<<EOT
+{
+}
+EOT
+
+
+
+-- Folders Resources --
+
+Get the public folders list for the user referenced by 'user_id'
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>user_id</td><td></td></tr>
+</table>
+GET /folders
+< 200
+<<<EOT
+{
+    "page": 1,
+    "next": "/folders?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "slug": "cool-stuff",
+            "name": "Cool Stuff",
+            "description": "Contains really cool stuff",
+
+            "createdAt" : "2013-09-17 23:42 UTC+0000",
+            "updatedAt" : "2013-09-17 23:42 UTC+0000",
+
+            "items" : [
+                "123hkjh2k3jh1",
+                "3382732bjdhsa",
+                "kauhkashiu321"
+            ]
+
+        }
+    ]
+}
+EOT
+
+Add a new folder if the following conditions are met :
+
+- The owner has a pro account
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>name</td><td></td></tr>
+    <tr><td>desc</td><td></td></tr>
+    <tr><td>items</td><td></td></tr>
+</table>
+POST /folders
+<<<EOT
+{
+    "name": "Cool Stuff",
+    "desc" : "Contains really cool stuff",
+
+    "items" : [
+        "123hkjh2k3jh1",
+        "3382732bjdhsa",
+        "kauhkashiu321"
+    ]
+}
+EOT
+< 201
+
+
+Update a folder if the following conditions are met :
+
+- The owner has a pro account
+- The models linked belong to the current user
+- The folder belong to the current user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+    <tr><td>name</td><td></td></tr>
+    <tr><td>desc</td><td></td></tr>
+    <tr><td>items</td><td></td></tr>
+</table>
+PUT /folders/{uid}
+<<<EOT
+{
+    "name": "Cool Stuff",
+    "desc" : "Contains really cool stuff",
+
+    "items" : [
+        "123hkjh2k3jh1",
+        "3382732bjdhsa",
+        "kauhkashiu321"
+    ]
+}
+EOT
+< 200
+
+
+The folder referenced by `id` is removed from the folders if the following conditions are met :
+
+- The folder owner is the current user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+DELETE /folders/{uid}
+< 200
+<<<EOT
+{
+}
+EOT
+
+
+-- Categories Resources --
+
+Get the categories
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+</table>
+GET /categories
+< 200
+<<<EOT
+{
+    "page": 1,
+    "next": "/categories?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "name": "Science",
+            "desc": "Science related models",
+
+            "parent" : 2
+        }
+    ]
+}
+EOT
+
+
+
+-- Texture Resources --
+
+Get the texture list for the model referenced by 'model_id'
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>model_id</td><td></td></tr>
+</table>
+GET /textures{?model_id}
+< 200
+<<<EOT
+{
+    "page": 1,
+    "next": "/textures?page_index=2",
+    "previous": null,
+
+    "items": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "model" : {
+                "uid" : "0123456789ABCDEFG"
+            },
+
+            "image" : "https://cdn.sketchfab.com/data/1/texture.png",
+
+            "createdAt" : "2013-09-17 23:42 UTC+0000"
+        }
+    ]
+}
+EOT
+
+Add a new texture and link it to a model if the following conditions are met :
+
+- The user owns the model targeted
+- The model targeted exists
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>model_uid</td><td></td></tr>
+    <tr><td>image_name</td><td></td></tr>
+    <tr><td>image_binary</td><td></td></tr>
+</table>
+POST /textures
+< 201
+<<<EOT
+{
+}
+EOT
+
+The texture referenced by `id` is removed from the textures if the following conditions are met :
+
+- The texture owner is the current user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required parameters</th><th></th></tr>
+    <tr><td>uid</td><td></td></tr>
+</table>
+DELETE /textures/{uid}
+< 200
+<<<EOT
+{
+}
+EOT
