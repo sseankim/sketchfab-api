@@ -12,7 +12,7 @@ Current User Resources
 Fetch information about current user
 
 **Note :** This endpoint does not return more than 4 models, 16 followings and 16 followers
-GET /me
+GET /users/me
 < 200
 <<<EOT
 {
@@ -24,7 +24,7 @@ GET /me
     "proAccount": "pro",
 
     "modelCount": 0,
-    "favoriteCount": 0,
+    "likeCount": 0,
     "folderCount": 0,
     "badgeCount": 0,
     "followerCount": 0,
@@ -44,10 +44,10 @@ GET /me
 
             "viewerUrl": "https://sketchfab.com/model/0123456789ABCDEFG",
 
-            "previews": {
-                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-            }
+            "thumbnails": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+            ]
         }
     ],
 
@@ -61,11 +61,10 @@ GET /me
         { "uid": "0123456789ABCDEFG", "name": "Beer Master", "description": "Well, this guy knows the subject quite a bit" }
     ],
 
-    "avatars": {
-        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-    },
+    "avatars": [
+        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" },
+    ],
 
     "followers": [
         {
@@ -77,11 +76,10 @@ GET /me
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ],
 
@@ -95,11 +93,10 @@ GET /me
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ]
 }
@@ -107,7 +104,7 @@ EOT
 
 Get the following list of the auth user
 
-GET /me/followings
+GET /users/me/followings
 < 201
 <<<EOT
 {
@@ -126,18 +123,17 @@ GET /me/followings
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ]
 ]
 EOT
 
 Get the follower list of the auth user
-GET /me/followers
+GET /users/me/followers
 < 201
 <<<EOT
 {
@@ -156,11 +152,10 @@ GET /me/followers
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ]
 ]
@@ -203,7 +198,7 @@ GET /users
             "proAccount": "pro",
 
             "modelCount": 0,
-            "favoriteCount": 0,
+            "likeCount": 0,
             "folderCount": 0,
             "badgeCount": 0,
             "followerCount": 0,
@@ -223,10 +218,10 @@ GET /users
 
                     "viewerUrl": "https://sketchfab.com/model/0123456789ABCDEFG",
 
-                    "previews": {
-                        "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-                        "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-                    }
+                    "thumbnails": [
+                        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+                    ]
                 }
             ],
 
@@ -240,11 +235,10 @@ GET /users
                 { "uid": "0123456789ABCDEFG", "name": "Beer Master", "description": "Well, this guy knows the subject quite a bit" }
             ],
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            },
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ],
 
             "followers": [
                 {
@@ -256,11 +250,10 @@ GET /users
 
                     "profileUrl": "https://sketchfab.com/user/test"
 
-                    "avatars": {
-                        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-                    }
+                    "avatars": [
+                        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+                    ]
                 }
             ],
 
@@ -274,11 +267,10 @@ GET /users
 
                     "profileUrl": "https://sketchfab.com/user/test"
 
-                    "avatars": {
-                        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-                    }
+                    "avatars": [
+                        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+                    ]
                 }
             ]
         }
@@ -301,7 +293,7 @@ GET /users/{uid}
     "proAccount": "pro",
 
     "modelCount": 0,
-    "favoriteCount": 0,
+    "likeCount": 0,
     "folderCount": 0,
     "badgeCount": 0,
     "followerCount": 0,
@@ -321,10 +313,10 @@ GET /users/{uid}
 
             "viewerUrl": "https://sketchfab.com/model/0123456789ABCDEFG",
 
-            "previews": {
-                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-            }
+            "thumbnails": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+            ]
         }
     ],
 
@@ -338,11 +330,10 @@ GET /users/{uid}
         { "uid": "0123456789ABCDEFG", "name": "Beer Master", "description": "Well, this guy knows the subject quite a bit" }
     ],
 
-    "avatars": {
-        "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-        "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-        "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-    },
+    "avatars": [
+        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+    ],
 
     "followers": [
         {
@@ -354,11 +345,10 @@ GET /users/{uid}
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ],
 
@@ -372,11 +362,10 @@ GET /users/{uid}
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ]
 }
@@ -402,11 +391,10 @@ GET /users/{uid}/followings
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ]
 ]
@@ -425,7 +413,7 @@ GET /users/{uid}/followers
 
     "results": [
         {
-            "id": 1,
+            "uid": "0123456789ABCDEFG",
 
             "username": "test",
             "displayName": "Foo Bar",
@@ -433,11 +421,10 @@ GET /users/{uid}/followers
 
             "profileUrl": "https://sketchfab.com/user/test",
 
-            "avatars": {
-                "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-            }
+            "avatars": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" }
+            ]
         }
     ]
 ]
@@ -521,7 +508,7 @@ GET /models
                 "isDownloadable": false
             },
 
-            "author": {
+            "user": {
                 "uid": "0123456789ABCDEFG",
                 "username": "test",
                 "displayName": "Foo Bar",
@@ -541,10 +528,10 @@ GET /models
                 "test"
             ],
 
-            "previews": {
-                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-            },
+            "thumbnails": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+            ]
 
             "fallback": [
                 "https://cdn.sketchfab.com/fallbacks/1/000deg.png",
@@ -611,7 +598,7 @@ GET /models/{uid}
         "isDownloadable": false
     },
 
-    "author": {
+    "user": {
         "uid": "0123456789ABCDEFG",
 
         "username": "test",
@@ -620,11 +607,10 @@ GET /models/{uid}
 
         "profileUrl": "https://sketchfab.com/user/test",
 
-        "avatars": {
-            "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-            "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-            "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-        }
+        "avatars": [
+            { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+            { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" },
+        ]
     },
 
     "categories": [
@@ -639,10 +625,10 @@ GET /models/{uid}
         "test"
     ],
 
-    "previews": {
-        "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-        "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-    },
+    "thumbnails": [
+        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+    ],
 
     "fallback": [
         "https://cdn.sketchfab.com/fallbacks/1/000deg.png",
@@ -708,14 +694,14 @@ POST /models/{uid}/background
 }
 
 
-Add the model referenced by `uid` to the favorite list of the current user
+Add the model referenced by `uid` to the liked model list of the current user
 POST /models/{uid}/likes
 < 200
 {
 }
 
 
-Remove the model referenced by `id` from the favorite list of the current user
+Remove the model referenced by `id` from the liked model list of the current user
 DELETE /models/{uid}/likes
 < 200
 {
@@ -751,7 +737,7 @@ GET /comments{?model_uid}
         {
             "uid": "0123456789ABCDEFG",
 
-            "author": {
+            "user": {
                 "uid": "0123456789ABCDEFG",
 
                 "username": "test",
@@ -760,16 +746,15 @@ GET /comments{?model_uid}
 
                 "profileUrl": "https://sketchfab.com/user/test",
 
-                "avatars": {
-                    "16x16": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-                    "100x100": "https://cdn.sketchfab.com/avatars/1/100x100.png",
-                    "256x256": "https://cdn.sketchfab.com/avatars/1/256x256.png"
-                }
+                "avatars": [
+                    { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/800x600.png" },
+                    { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/avatars/0123456789ABCDEFG/1024x768.png" },
+                ]
             },
 
-            "submissionDate": "2013-09-17 23:42 UTC+0000",
+            "createdAt": "2013-09-17 23:42 UTC+0000",
 
-            "text": "This model is *awesome*"
+            "body": "This model is *awesome*"
         }
     ]
 }
@@ -824,9 +809,13 @@ GET /backgrounds
         {
             "uid": "0123456789ABCDEFG",
 
-            "imageUrl": "https://cdn.sketchfab.com/avatars/1/16x16.png",
-
             "createdAt" : "2013-09-17 23:42 UTC+0000",
+
+            "images": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/backgrounds/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/backgrounds/0123456789ABCDEFG/1024x768.png" },
+            ]
+
         }
     ]
 }
@@ -900,10 +889,10 @@ GET /folders{?user_uid}
 
                     "viewerUrl": "https://sketchfab.com/model/0123456789ABCDEFG",
 
-                    "previews": {
-                        "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-                        "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-                    }
+                    "thumbnails": [
+                        { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                        { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+                    ]
                 }
             ]
 
@@ -966,10 +955,10 @@ PUT /folders/{uid}
 
             "viewerUrl": "https://sketchfab.com/model/0123456789ABCDEFG",
 
-            "previews": {
-                "256x128": "https://cdn.sketchfab.com/previews/1/256x128.png",
-                "256x256": "https://cdn.sketchfab.com/previews/1/256x256.png"
-            }
+            "thumbnails": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+            ]
         }
     ]
 }
@@ -1041,9 +1030,12 @@ GET /textures{?model_uid}
                 "uid" : "0123456789ABCDEFG"
             },
 
-            "imageUrl" : "https://cdn.sketchfab.com/data/1/texture.png",
+            "createdAt" : "2013-09-17 23:42 UTC+0000",
 
-            "createdAt" : "2013-09-17 23:42 UTC+0000"
+            "images": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/textures/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/textures/0123456789ABCDEFG/1024x768.png" },
+            ]
         }
     ]
 }
