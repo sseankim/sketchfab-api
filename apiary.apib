@@ -482,8 +482,8 @@ Query Sketchfab model list
     <tr><td>page_index</td><td></td></tr>
     <tr><td>sort_by</td><td></td></tr>
     <tr><td>filter_by</td><td><b>Not yet implemented</b></td></tr>
-    <tr><td>categories</td><td>filler, will be replaced by `filter_by` later</td></tr>
-    <tr><td>tags</td><td>filler, will be replaced by `filter_by` later</td></tr>
+    <tr><td>categories_filter</td><td>filler, will be replaced by `filter_by` later</td></tr>
+    <tr><td>tags_filter</td><td>filler, will be replaced by `filter_by` later</td></tr>
 </table>
 GET /models
 < 200
@@ -745,9 +745,9 @@ Get the comment list for the model referenced by `model_uid`
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>model_uid</td><td></td></tr>
+    <tr><td>model_filter</td><td></td></tr>
 </table>
-GET /comments{?model_uid}
+GET /comments{?model_filter}
 < 200
 <<<EOT
 {
@@ -788,7 +788,7 @@ Add a new comment to the model referenced by `model_uid`
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>model_uid</td><td></td></tr>
+    <tr><td>model_filter</td><td></td></tr>
 </table>
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
@@ -796,7 +796,7 @@ Add a new comment to the model referenced by `model_uid`
     <tr><th>Required POST parameters</th><th></th></tr>
     <tr><td>text</td><td></td></tr>
 </table>
-POST /comments{?model_uid}
+POST /comments{?model_filter}
 < 201
 <<<EOT
 {
@@ -881,9 +881,9 @@ Get the public folders list for the user referenced by `user_uid`
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>user_uid</td><td></td></tr>
+    <tr><td>user_filter</td><td></td></tr>
 </table>
-GET /folders{?user_uid}
+GET /folders{?user_filter}
 < 200
 <<<EOT
 {
@@ -1042,9 +1042,9 @@ Get the texture list for the model referenced by 'model_uid'
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>model_uid</td><td></td></tr>
+    <tr><td>model_filter</td><td></td></tr>
 </table>
-GET /textures{?model_uid}
+GET /textures{?model_filter}
 < 200
 <<<EOT
 {
