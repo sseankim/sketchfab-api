@@ -184,7 +184,7 @@ Query Sketchfab user list
     <tr><td>sort_by</td><td></td></tr>
     <tr><td>filter_by</td><td><b>incoming</b></td></tr>
     <tr><td>username_filter</td><td>temporary</td></tr>
-    <tr><td>status_filter</td><td>temporary</td></tr>
+    <tr><td>account_filter</td><td>temporary</td></tr>
 </table>
 GET /users
 < 200
@@ -205,7 +205,7 @@ GET /users
             "tagline": "Hello World",
             "biography": "Hello world, I am Foo Bar",
 
-            "proAccount": "pro",
+            "account": "pro",
 
             "modelCount": 0,
             "likeCount": 0,
@@ -256,7 +256,7 @@ GET /users
 
                     "username": "test",
                     "displayName": "Foo Bar",
-                    "proAccount": "pro",
+                    "account": "pro",
 
                     "profileUrl": "https://sketchfab.com/user/test"
 
@@ -273,7 +273,7 @@ GET /users
 
                     "username": "test",
                     "displayName": "Foo Bar",
-                    "proAccount": "pro",
+                    "account": "pro",
 
                     "profileUrl": "https://sketchfab.com/user/test"
 
@@ -303,7 +303,7 @@ GET /users/{uid}
     "tagline": "Hello World",
     "biography": "Hello world, I am Foo Bar",
 
-    "proAccount": "pro",
+    "account": "pro",
 
     "modelCount": 0,
     "likeCount": 0,
@@ -354,7 +354,7 @@ GET /users/{uid}
 
             "username": "test",
             "displayName": "Foo Bar",
-            "proAccount": "pro",
+            "account": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -371,7 +371,7 @@ GET /users/{uid}
 
             "username": "test",
             "displayName": "Foo Bar",
-            "proAccount": "pro",
+            "account": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -400,7 +400,7 @@ GET /users/{uid}/followings
 
             "username": "test",
             "displayName": "Foo Bar",
-            "proAccount": "pro",
+            "account": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -430,7 +430,7 @@ GET /users/{uid}/followers
 
             "username": "test",
             "displayName": "Foo Bar",
-            "proAccount": "pro",
+            "account": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -525,7 +525,7 @@ GET /models
                 "uid": "0123456789ABCDEFG",
                 "username": "test",
                 "displayName": "Foo Bar",
-                "proAccount": "pro",
+                "account": "pro",
                 "profileUrl": "https://sketchfab.com/user/test"
             },
 
@@ -616,7 +616,7 @@ GET /models/{uid}
 
         "username": "test",
         "displayName": "Foo Bar",
-        "proAccount": "pro",
+        "account": "pro",
 
         "profileUrl": "https://sketchfab.com/user/test",
 
@@ -765,7 +765,7 @@ GET /comments{?model_filter}
 
                 "username": "test",
                 "displayName": "Foo Bar",
-                "proAccount": "pro",
+                "account": "pro",
 
                 "profileUrl": "https://sketchfab.com/user/test",
 
