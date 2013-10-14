@@ -683,7 +683,7 @@ Send a model to the processing queue
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required POST parameters</th><th></th></tr>
     <tr><td>name</td><td></td></tr>
-    <tr><td>binary_content</td><td></td></tr>
+    <tr><td>model_file</td><td></td></tr>
 </table>
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
@@ -794,7 +794,7 @@ Add a new comment to the model referenced by `model_uid`
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required POST parameters</th><th></th></tr>
-    <tr><td>text</td><td></td></tr>
+    <tr><td>body</td><td></td></tr>
 </table>
 POST /comments{?model_filter}
 < 201
