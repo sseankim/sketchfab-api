@@ -1186,3 +1186,20 @@ DELETE /tasks/{uid}
 {
 }
 EOT
+
+-- Thumbnail Ressources --
+
+Post a new thumbnail for the model referenced by `model_uid`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>model_uid</td><td></td></tr>
+    <tr><td>image_file</td><td></td></tr>
+</table>
+POST /thumbnails
+< 201
+<<<EOT
+{
+}
+EOT
