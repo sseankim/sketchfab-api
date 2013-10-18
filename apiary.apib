@@ -731,6 +731,56 @@ DELETE /models/{uid}/likes
 }
 
 
+Link the category referenced by `category_uid` to the model referenced by `uid`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>category_uid</td><td></td></tr>
+</table>
+POST /models/{uid}/categories
+< 200
+{
+}
+
+
+Unlink the category referenced by `category_uid` to the model referenced by `uid`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>category_uid</td><td></td></tr>
+</table>
+DELETE /models/{uid}/categories
+< 200
+{
+}
+
+Link the tag referenced by `tag` to the model referenced by `uid`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>tag</td><td></td></tr>
+</table>
+POST /models/{uid}/tags
+< 200
+{
+}
+
+
+Unlink the tag referenced by `tag` to the model referenced by `uid`
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>tag</td><td></td></tr>
+</table>
+DELETE /models/{uid}/tags
+< 200
+{
+}
+
+
 Delete a model if its owner is the auth user
 DELETE /models/{uid}
 < 200
