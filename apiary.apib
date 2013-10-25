@@ -59,8 +59,8 @@ GET /users/me
     ],
 
     "skills": [
-        { "uid": "0123456789ABCDEFG", "name": "blender" },
-        { "uid": "0123456789ABCDEFG", "name": "maya" }
+        { "uid": "0123456789ABCDEFG", "name": "blender", "slug": "blender" },
+        { "uid": "0123456789ABCDEFG", "name": "maya", "slug": "maya" }
     ],
 
     "badges": [
@@ -205,7 +205,7 @@ GET /users
             "tagline": "Hello World",
             "biography": "Hello world, I am Foo Bar",
 
-            "account": "pro",
+            "proAccount": "pro",
 
             "modelCount": 0,
             "likeCount": 0,
@@ -236,8 +236,8 @@ GET /users
             ],
 
             "skills": [
-                { "uid": "0123456789ABCEFG", "name": "blender" },
-                { "uid": "0123456789ABCEFG", "name": "maya" }
+                { "uid": "0123456789ABCEFG", "name": "blender", "slug": "blender" },
+                { "uid": "0123456789ABCEFG", "name": "maya", "slug": "maya" }
             ],
 
             "badges": [
@@ -273,7 +273,7 @@ GET /users
 
                     "username": "test",
                     "displayName": "Foo Bar",
-                    "account": "pro",
+                    "proAccount": "pro",
 
                     "profileUrl": "https://sketchfab.com/user/test"
 
@@ -303,7 +303,7 @@ GET /users/{uid}
     "tagline": "Hello World",
     "biography": "Hello world, I am Foo Bar",
 
-    "account": "pro",
+    "proAccount": "pro",
 
     "modelCount": 0,
     "likeCount": 0,
@@ -334,8 +334,8 @@ GET /users/{uid}
     ],
 
     "skills": [
-        { "uid": "0123456789ABCDEFG", "name": "blender" },
-        { "uid": "0123456789ABCDEFG", "name": "maya" }
+        { "uid": "0123456789ABCDEFG", "name": "blender", "slug": "blender" },
+        { "uid": "0123456789ABCDEFG", "name": "maya", "slug": "maya" }
     ],
 
     "badges": [
@@ -354,7 +354,7 @@ GET /users/{uid}
 
             "username": "test",
             "displayName": "Foo Bar",
-            "account": "pro",
+            "proAccount": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -371,7 +371,7 @@ GET /users/{uid}
 
             "username": "test",
             "displayName": "Foo Bar",
-            "account": "pro",
+            "proAccount": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -400,7 +400,7 @@ GET /users/{uid}/followings
 
             "username": "test",
             "displayName": "Foo Bar",
-            "account": "pro",
+            "proAccount": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -430,7 +430,7 @@ GET /users/{uid}/followers
 
             "username": "test",
             "displayName": "Foo Bar",
-            "account": "pro",
+            "proAccount": "pro",
 
             "profileUrl": "https://sketchfab.com/user/test",
 
@@ -525,7 +525,7 @@ GET /models
                 "uid": "0123456789ABCDEFG",
                 "username": "test",
                 "displayName": "Foo Bar",
-                "account": "pro",
+                "proAccount": "pro",
                 "profileUrl": "https://sketchfab.com/user/test"
             },
 
@@ -616,7 +616,7 @@ GET /models/{uid}
 
         "username": "test",
         "displayName": "Foo Bar",
-        "account": "pro",
+        "proAccount": "pro",
 
         "profileUrl": "https://sketchfab.com/user/test",
 
@@ -815,7 +815,7 @@ GET /comments{?model_filter}
 
                 "username": "test",
                 "displayName": "Foo Bar",
-                "account": "pro",
+                "proAccount": "pro",
 
                 "profileUrl": "https://sketchfab.com/user/test",
 
@@ -959,7 +959,7 @@ GET /folders
 
                 "username": "test",
                 "displayName": "Foo Bar",
-                "account": "pro",
+                "proAccount": "pro",
 
                 "profileUrl": "https://sketchfab.com/user/test",
 
@@ -1086,14 +1086,30 @@ GET /categories
 
             "exploreUrl": "https://sketchfab.com/categories/science",
 
-            "parentUid" : "0123456789ABCDEFG",
-
             "children" : [
                 "0123456789ABCDEFG",
                 "0123456789ABCDEFG",
                 "0123456789ABCDEFG"
-            ]
+            ],
+
+	    "parent" : null
+        },
+        {
+            "uid": "0987654321GFDS",
+
+            "slug": "bunny",
+            "name": "Bunny",
+            "description": "Bunny related models",
+
+            "exploreUrl": "https://sketchfab.com/categories/carrot",
+
+            "parentUid" : "0123456789ABCDEFG",
+
+	    "children" : null,
+
+	    "parent" : "1234567890ASDFG"
         }
+
     ]
 }
 EOT
@@ -1121,9 +1137,7 @@ GET /textures{?model_filter}
         {
             "uid": "0123456789ABCDEFG",
 
-            "model" : {
-                "uid" : "0123456789ABCDEFG"
-            },
+            "model": "0123456789ABCDEFG",
 
             "createdAt" : "2013-09-17 23:42 UTC+0000",
 
