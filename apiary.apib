@@ -472,6 +472,25 @@ POST /users
 }
 EOT
 
+
+Update a user profile
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <tr><th>Required PUT parameters</th></tr>
+    <tr><td>display_name</td><td></td></tr>
+    <tr><td>twitter_username</td><td></td></tr>
+    <tr><td>facebook_username</td><td></td></tr>
+    <tr><td>bio</td><td></td></tr>
+    <tr><td>first_name</td><td></td></tr>
+    <tr><td>last_name</td><td></td></tr>
+</table>
+PUT /users
+< 200
+<<<EOT
+{
+}
+EOT
+
 -- Model Resources --
 
 Query Sketchfab model list
@@ -699,6 +718,23 @@ POST /models
     "taskUid": "0123456789ABCDEFG"
 }
 EOT
+
+Update a model
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required PUT parameters</th><th></th></tr>
+    <tr><td>name</td><td></td></tr>
+    <tr><td>description</td><td></td></tr>
+</table>
+
+PUT /models
+< 200
+<<<EOT
+{
+}
+EOT
+
 
 Set an existing background to a model if the following conditions are met :
 
