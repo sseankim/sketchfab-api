@@ -3,7 +3,7 @@ HOST: http://api.sketchfab.com/v2/
 --- Sketchfab API v2 ---
 
 ---
-Except when otherwise stated, every POST / PUT / PATCH method can be sent either as :
+Except when otherwise stated, every POST / PATCH method can be sent either as :
 - `application/x-www-form-urlencoded`
 - `multipart/form-data`
 - JSON
@@ -476,7 +476,7 @@ EOT
 Update a user profile
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <tr><th>Required PUT parameters</th></tr>
+    <tr><th>Optional PATCH parameters</th></tr>
     <tr><td>display_name</td><td></td></tr>
     <tr><td>twitter_username</td><td></td></tr>
     <tr><td>facebook_username</td><td></td></tr>
@@ -486,13 +486,54 @@ Update a user profile
     <tr><td>city</td><td></td></tr>
     <tr><td>country</td><td></td></tr>
     <tr><td>website</td><td></td></tr>
+    <tr><td>old_password</td><td></td></tr>
+    <tr><td>password</td><td></td></tr>
 </table>
-PUT /users
+PATCH /users/{uid}
 < 200
 <<<EOT
 {
 }
 EOT
+
+
+Link the array of skill referenced by `skills` to the user referenced by `uid`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>skills</td><td></td></tr>
+</table>
+POST /users/{uid}/skills
+< 200
+{
+}
+
+
+Unlink the array of skill referenced by `skills` to the user referenced by `uid`
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required GET parameters</th><th></th></tr>
+    <tr><td>skills</td><td></td></tr>
+</table>
+DELETE /users/{uid}/skills
+< 200
+{
+}
+
+Link the array of skill referenced by `skills` to the user referenced by `uid`
+and remove all skills previously linked to this user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required PATCH parameters</th><th></th></tr>
+    <tr><td>skills</td><td></td></tr>
+</table>
+PATCH /users/{uid}/skills
+< 200
+{
+}
+
 
 -- Model Resources --
 
@@ -712,6 +753,10 @@ Send a model to the processing queue
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Optional POST parameters</th><th></th></tr>
     <tr><td>description</td><td></td></tr>
+    <tr><td>source</td><td></td></tr>
+    <tr><td>password</td><td></td></tr>
+    <tr><td>model_file_name</td><td></td></tr>
+    <tr><td>private</td><td></td></tr>
 </table>
 POST /models
 < 200
@@ -726,13 +771,37 @@ Update a model
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required PUT parameters</th><th></th></tr>
+    <tr><th>Optional PATCH parameters</th><th></th></tr>
     <tr><td>name</td><td></td></tr>
     <tr><td>description</td><td></td></tr>
-    <tr><td>options</td><td>scene, lighting, cull, shading, orientation, camera, wireframe, ssao, cubemap, materials, environment</td></tr>
 </table>
 
-PUT /models
+PATCH /models/{uid}
+< 200
+<<<EOT
+{
+}
+EOT
+
+Update model options
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Optional PATCH parameters</th><th></th></tr>
+    <tr><td>scene</td><td></td></tr>
+    <tr><td>lighting</td><td></td></tr>
+    <tr><td>cull</td><td></td></tr>
+    <tr><td>shading</td><td></td></tr>
+    <tr><td>orientation</td><td></td></tr>
+    <tr><td>camera</td><td></td></tr>
+    <tr><td>wireframe</td><td></td></tr>
+    <tr><td>ssao</td><td></td></tr>
+    <tr><td>cubemap</td><td></td></tr>
+    <tr><td>materials</td><td></td></tr>
+    <tr><td>environment</td><td></td></tr>
+</table>
+
+PATCH /models/{uid}/options
 < 200
 <<<EOT
 {
@@ -771,12 +840,12 @@ DELETE /models/{uid}/likes
 }
 
 
-Link the category referenced by `category_uid` to the model referenced by `uid`
+Link the array of category referenced by `categories` to the model referenced by `uid`
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required POST parameters</th><th></th></tr>
-    <tr><td>category_uid</td><td></td></tr>
+    <tr><td>categories</td><td></td></tr>
 </table>
 POST /models/{uid}/categories
 < 200
@@ -784,24 +853,38 @@ POST /models/{uid}/categories
 }
 
 
-Unlink the category referenced by `category_uid` to the model referenced by `uid`
+Unlink the array category referenced by `categories` to the model referenced by `uid`
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>category_uid</td><td></td></tr>
+    <tr><td>categories</td><td></td></tr>
 </table>
 DELETE /models/{uid}/categories
 < 200
 {
 }
 
-Link the tag referenced by `tag` to the model referenced by `uid`
+Link the array of category referenced by `categories` to the model referenced by `uid`
+and remove all categories previously linked to this model
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required PATCH parameters</th><th></th></tr>
+    <tr><td>categories</td><td></td></tr>
+</table>
+PATCH /models/{uid}/categories
+< 200
+{
+}
+
+
+Link the array of tag referenced by `tags` to the model referenced by `uid`
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required POST parameters</th><th></th></tr>
-    <tr><td>tag</td><td></td></tr>
+    <tr><td>tags</td><td></td></tr>
 </table>
 POST /models/{uid}/tags
 < 200
@@ -809,13 +892,26 @@ POST /models/{uid}/tags
 }
 
 
-Unlink the tag referenced by `tag` to the model referenced by `uid`
+Unlink the array of tag referenced by `tags` to the model referenced by `uid`
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>tag</td><td></td></tr>
+    <tr><td>tags</td><td></td></tr>
 </table>
 DELETE /models/{uid}/tags
+< 200
+{
+}
+
+Link the array of tag referenced by `tags` to the model referenced by `uid`
+and remove all tags previously linked to this model
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required PATCH parameters</th><th></th></tr>
+    <tr><td>tags</td><td></td></tr>
+</table>
+PATCH /models/{uid}/tags
 < 200
 {
 }
@@ -1058,13 +1154,13 @@ Update a folder if the following conditions are met :
 
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><th>Optional PATCH parameters</th><th></th></tr>
     <tr><td>uid</td><td></td></tr>
     <tr><td>name</td><td></td></tr>
     <tr><td>description</td><td></td></tr>
     <tr><td>items[]</td><td></td></tr>
 </table>
-PUT /folders/{uid}
+PATCH /folders/{uid}
 < 200
 <<<EOT
 {
