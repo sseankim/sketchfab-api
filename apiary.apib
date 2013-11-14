@@ -112,12 +112,12 @@ EOT
 Get the following list of the auth user
 
 GET /users/me/followings
-< 201
+< 200
 <<<EOT
 {
     "page": 1,
 
-    "next": "/me/followings?page=2",
+    "next": "https://sketchfab.com/me/followings?page=2",
     "previous": null,
 
     "items": [
@@ -141,12 +141,12 @@ EOT
 
 Get the follower list of the auth user
 GET /users/me/followers
-< 201
+< 200
 <<<EOT
 {
     "page": 1,
 
-    "next": "/me/followers?page=2",
+    "next": "https://sketchfab.com/me/followers?page=2",
     "previous": null,
 
     "results": [
@@ -180,7 +180,7 @@ Query Sketchfab user list
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Optional GET parameters</th><th></th></tr>
-    <tr><td>page_index</td><td></td></tr>
+    <tr><td>page</td><td></td></tr>
     <tr><td>sort_by</td><td></td></tr>
     <tr><td>filter_by</td><td><b>incoming</b></td></tr>
     <tr><td>username_filter</td><td>temporary</td></tr>
@@ -386,12 +386,12 @@ EOT
 
 Get the following list of the user referenced by `uid`
 GET /users/{uid}/followings
-< 201
+< 200
 <<<EOT
 {
     "page": 1,
 
-    "next": "/users/1/followings?page=2",
+    "next": "https://sketchfab.com/users/1/followings?page=2",
     "previous": null,
 
     "results": [
@@ -416,12 +416,12 @@ EOT
 Get the follower list of the user referenced by `uid`
 
 GET /users/{uid}/followers
-< 201
+< 200
 <<<EOT
 {
     "page": 1,
 
-    "next": "/users/1/followers?page=2",
+    "next": "https://sketchfab.com/users/1/followers?page=2",
     "previous": null,
 
     "results": [
@@ -542,7 +542,7 @@ Query Sketchfab model list
 <table style="width:100%; margin: 12px 0 0 0; text-align: left;">
     <colgroup><col width="200"/><col/></colgroup>
     <tr><th>Optional GET parameters</th><th></th></tr>
-    <tr><td>page_index</td><td></td></tr>
+    <tr><td>page</td><td></td></tr>
     <tr><td>sort_by</td><td></td></tr>
     <tr><td>filter_by</td><td><b>Not yet implemented</b></td></tr>
     <tr><td>categories_filter</td><td>filler, will be replaced by `filter_by` later</td></tr>
@@ -554,7 +554,7 @@ GET /models
 {
     "page": 1,
 
-    "next": "/models?page=2",
+    "next": "https://sketchfab.com/models?page=2",
     "previous": null,
 
     "results": [
@@ -939,7 +939,7 @@ GET /comments{?model_filter}
 {
     "page": 1,
 
-    "next": "/models?page=2",
+    "next": "https://sketchfab.com/models?page=2",
     "previous": null,
 
     "results": [
@@ -1011,7 +1011,7 @@ GET /backgrounds
 {
     "page": 1,
 
-    "next": "/backgrounds?page=2",
+    "next": "https://sketchfab.com/backgrounds?page=2",
     "previous": null,
 
     "results": [
@@ -1074,7 +1074,7 @@ GET /folders
 {
     "page": 1,
 
-    "next": "/folders?page=2",
+    "next": "https://sketchfab.com/folders?page=2",
     "previous": null,
 
     "results": [
@@ -1209,7 +1209,7 @@ GET /categories
 {
     "page": 1,
 
-    "next": "/categories?page=2",
+    "next": "https://sketchfab.com/categories?page=2",
     "previous": null,
 
     "results": [
@@ -1266,7 +1266,7 @@ GET /textures{?model_filter}
 {
     "page": 1,
 
-    "next": "/textures?page=2",
+    "next": "https://sketchfab.com/textures?page=2",
     "previous": null,
 
     "results": [
