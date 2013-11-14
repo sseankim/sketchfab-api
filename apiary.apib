@@ -1353,3 +1353,38 @@ POST /thumbnails
 {
 }
 EOT
+
+-- Message Ressources --
+
+Send a new message to the pro user referenced by `recipient`
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>sender_email</td><td></td></tr>
+    <tr><td>recipient</td><td></td></tr>
+    <tr><td>subject</td><td></td></tr>
+    <tr><td>body</td><td></td></tr>
+    <tr><td>origin</td><td></td></tr>
+</table>
+POST /messages
+< 201
+<<<EOT
+{
+}
+EOT
+
+Get the list of message of the current pro user
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Optional GET parameters</th><th></th></tr>
+    <tr><td>user_filter</td><td></td></tr>
+</table>
+
+GET /messages
+< 200
+<<<EOT
+{
+}
+EOT
