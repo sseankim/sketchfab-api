@@ -576,6 +576,10 @@ GET /models
 
             "viewerUrl": "https://sketchfab.com/view/0",
             "embedUrl": "https://sketchfab.com/embed/1",
+            "editorUrl": "https://sketchfab.com/edit/1",
+
+            "isPrivate": true,
+            "isProtected": true,
 
             "license": {
                 "uid": "0123456789ABCDEFG",
@@ -663,9 +667,12 @@ GET /models/{uid}
     "likeCount": 200,
     "vertexCount": 300,
     "faceCount": 400,
+    "isPrivate": true,
+    "isProtected": true,
 
     "viewerUrl": "https://sketchfab.com/view/0",
     "embedUrl": "https://sketchfab.com/embed/1",
+    "editorUrl": "https://sketchfab.com/edit/1",
 
     "license": {
         "uid": "0123456789ABCDEFG",
@@ -836,6 +843,9 @@ Send a model to the processing queue
     <tr><td>password</td><td></td></tr>
     <tr><td>model_file_name</td><td></td></tr>
     <tr><td>private</td><td></td></tr>
+    <tr><td>password</td><td></td></tr>
+    <tr><td>published</td><td></td></tr>
+
 </table>
 POST /models
 < 200
@@ -853,20 +863,10 @@ Update a model
     <tr><th>Optional PATCH parameters</th><th></th></tr>
     <tr><td>name</td><td></td></tr>
     <tr><td>description</td><td></td></tr>
-</table>
-
-PATCH /models/{uid}
-< 200
-<<<EOT
-{
-}
-EOT
-
-Update model options
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Optional PATCH parameters</th><th></th></tr>
+    <tr><td>published</td><td></td></tr>
+    <tr><td>password</td><td></td></tr>
+    <tr><td>private</td><td></td></tr>
+    <tr><td>OPTIONS</td><td></td></tr>
     <tr><td>scene</td><td></td></tr>
     <tr><td>lighting</td><td></td></tr>
     <tr><td>cull</td><td></td></tr>
@@ -880,7 +880,7 @@ Update model options
     <tr><td>environment</td><td></td></tr>
 </table>
 
-PATCH /models/{uid}/options
+PATCH /models/{uid}
 < 200
 <<<EOT
 {
