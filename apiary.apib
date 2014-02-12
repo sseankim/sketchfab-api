@@ -736,6 +736,85 @@ GET /models/{uid}
             "type": "polygon"
         }
     ]
+
+    "options" : {
+        "scene" : {
+            "fov" : 40,
+            "id" : "123456789"
+        },
+        "lighting" : {},
+        "cull" : {},
+        "shading" : {
+            "type" : "no-shading"
+        },
+        "orientation" : {},
+        "camera" : {
+            "position" : [
+                0.02508997917175293,
+                -9.516540989952304,
+                5.918229289689171
+            ],
+            "target" : [
+                0.02508997917175293,
+                5.9187836945056915,
+                -1.7994330525398254
+            ]
+        },
+        "wireframe" : {
+            "color" : "88888833",
+            "enable" : false
+        },
+        "ssao" : {
+            "angleLimit" : 0.001,
+            "nbSamples" : 16,
+            "enable" : false,
+            "blurPixelDistance" : 1.5,
+            "power" : 1,
+            "blurNbSamples" : 1,
+            "version" : 1,
+            "radius" : 0.01
+        },
+        "cubemap" : {
+            "enable" : false
+        },
+        "materials" : {},
+        "environment" : {
+            comment: "Snow on all trees, deep in the fairy tale forest, overcast skylight only",
+            enable: true,
+            uid: "4024128cf8904b69946e891caac5f305",
+            author: "Blochi",
+            light: 0.2,
+            reflection: {
+                multi: 1,
+                type: "sphere",
+                gamma: 1.8,
+                file: [
+                    {
+                        width: 4096,
+                        file: "//d3iahq3akd4kx2.cloudfront.net/media/environments/4024128cf8904b69946e891caac5f305/reflection_4096x2048.hdr.png",
+                        height: 2048
+                    },
+                    {
+                        width: 2048,
+                        file: "//d3iahq3akd4kx2.cloudfront.net/media/environments/4024128cf8904b69946e891caac5f305/reflection_2048x1024.hdr.png",
+                        height: 1024
+                    },
+                    {
+                        width: 1024,
+                        file: "//d3iahq3akd4kx2.cloudfront.net/media/environments/4024128cf8904b69946e891caac5f305/reflection_1024x512.hdr.png",
+                        height: 512
+                    },
+                    {
+                        width: 512,
+                        file: "//d3iahq3akd4kx2.cloudfront.net/media/environments/4024128cf8904b69946e891caac5f305/reflection_512x256.hdr.png",
+                        height: 256
+                    }
+                ]
+            }
+        },
+        "updatedAt" : "2013-09-17 23:42 UTC+0000"
+    }
+
 EOT
 
 Send a model to the processing queue
