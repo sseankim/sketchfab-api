@@ -1285,6 +1285,65 @@ DELETE /folders/{uid}
 EOT
 
 
+Add new items :
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required POST parameters</th><th></th></tr>
+    <tr><td>items</td><td></td></tr>
+</table>
+
+POST /folders/<uid>/items
+< 201
+{
+    "uid": "0123456789ABCDEFG"
+
+    "name": "Cool Stuff",
+    "description" : "Contains really cool stuff",
+
+    "folderUrl" : "https://sketchfab.com/folder/0123456789ABCDEFG",
+
+    "items" : [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "name": "Yet Another Model",
+            "description": "Done in one night by a guy with a bit too much free time",
+
+            "viewerUrl": "https://sketchfab.com/model/0123456789ABCDEFG",
+
+            "thumbnails": [
+                { "width" : 800, "height" : 600, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/800x600.png" },
+                { "width" : 1024, "height" : 768, "imageUrl": "https://cdn.sketchfab.com/thumbnails/0123456789ABCDEFG/1024x768.png" },
+            ]
+        }
+    ]
+
+}
+
+Delete items:
+
+<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
+    <colgroup><col width="200"/><col/></colgroup>
+    <tr><th>Required DELETE parameters</th><th></th></tr>
+    <tr><td>items</td><td></td></tr>
+</table>
+
+DELETE /folders/<uid>/items
+< 204
+{
+    "uid": "0123456789ABCDEFG"
+
+    "name": "Cool Stuff",
+    "description" : "Contains really cool stuff",
+
+    "folderUrl" : "https://sketchfab.com/folder/0123456789ABCDEFG",
+
+    "items" : []
+
+}
+
+
 -- Categories Resources --
 
 Get the categories
