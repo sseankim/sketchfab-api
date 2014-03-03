@@ -492,6 +492,8 @@ Update a user profile
     <tr><td>website</td><td></td></tr>
     <tr><td>confirmation_password</td><td></td></tr>
     <tr><td>password</td><td></td></tr>
+    <tr><td>skills</td><td></td></tr>
+
 </table>
 PATCH /users/{uid}
 < 200
@@ -499,44 +501,6 @@ PATCH /users/{uid}
 {
 }
 EOT
-
-
-Link the array of skill referenced by `skills` to the user referenced by `uid`
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required POST parameters</th><th></th></tr>
-    <tr><td>skills</td><td></td></tr>
-</table>
-POST /users/{uid}/skills
-< 200
-{
-}
-
-
-Unlink the array of skill referenced by `skills` to the user referenced by `uid`
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>skills</td><td></td></tr>
-</table>
-DELETE /users/{uid}/skills
-< 200
-{
-}
-
-Link the array of skill referenced by `skills` to the user referenced by `uid`
-and remove all skills previously linked to this user
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required PATCH parameters</th><th></th></tr>
-    <tr><td>skills</td><td></td></tr>
-</table>
-PATCH /users/{uid}/skills
-< 200
-{
-}
 
 
 -- Model Resources --
