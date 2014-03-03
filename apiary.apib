@@ -836,6 +836,8 @@ Update a model
     <tr><td>published</td><td></td></tr>
     <tr><td>password</td><td></td></tr>
     <tr><td>private</td><td></td></tr>
+    <tr><td>tags</td><td></td></tr>
+    <tr><td>categories</td><td></td></tr>
     <tr><td>OPTIONS</td><td></td></tr>
     <tr><td>scene</td><td></td></tr>
     <tr><td>lighting</td><td></td></tr>
@@ -884,83 +886,6 @@ POST /models/{uid}/likes
 
 Remove the model referenced by `id` from the liked model list of the current user
 DELETE /models/{uid}/likes
-< 200
-{
-}
-
-
-Link the array of category referenced by `categories` to the model referenced by `uid`
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required POST parameters</th><th></th></tr>
-    <tr><td>categories</td><td></td></tr>
-</table>
-POST /models/{uid}/categories
-< 200
-{
-}
-
-
-Unlink the array category referenced by `categories` to the model referenced by `uid`
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>categories</td><td></td></tr>
-</table>
-DELETE /models/{uid}/categories
-< 200
-{
-}
-
-Link the array of category referenced by `categories` to the model referenced by `uid`
-and remove all categories previously linked to this model
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required PATCH parameters</th><th></th></tr>
-    <tr><td>categories</td><td></td></tr>
-</table>
-PATCH /models/{uid}/categories
-< 200
-{
-}
-
-
-Link the array of tag referenced by `tags` to the model referenced by `uid`
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required POST parameters</th><th></th></tr>
-    <tr><td>tags</td><td></td></tr>
-</table>
-POST /models/{uid}/tags
-< 200
-{
-}
-
-
-Unlink the array of tag referenced by `tags` to the model referenced by `uid`
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required GET parameters</th><th></th></tr>
-    <tr><td>tags</td><td></td></tr>
-</table>
-DELETE /models/{uid}/tags
-< 200
-{
-}
-
-Link the array of tag referenced by `tags` to the model referenced by `uid`
-and remove all tags previously linked to this model
-
-<table style="width:100%; margin: 12px 0 0 0; text-align: left;">
-    <colgroup><col width="200"/><col/></colgroup>
-    <tr><th>Required PATCH parameters</th><th></th></tr>
-    <tr><td>tags</td><td></td></tr>
-</table>
-PATCH /models/{uid}/tags
 < 200
 {
 }
