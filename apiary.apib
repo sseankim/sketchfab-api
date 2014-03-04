@@ -1295,6 +1295,29 @@ GET /categories
 }
 EOT
 
+-- Skill Resources --
+
+Get the skills
+GET /skills
+< 200
+<<<EOT
+{
+    "page": 1,
+
+    "next": "https://sketchfab.com/skills?page=2",
+    "previous": null,
+
+    "results": [
+        {
+            "uid": "0123456789ABCDEFG",
+
+            "slug": "blender",
+            "name": "Blender",
+        }
+    ]
+}
+EOT
+
 
 -- Texture Resources --
 
